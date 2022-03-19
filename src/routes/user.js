@@ -4,6 +4,7 @@ const getUsers = require('../controller/getUsers');
 const addUser = require('../controller/addUser');
 const editUser = require('../controller/editUser');
 const deleteUser = require('../controller/deleteUser');
+const getUserById = require('../controller/getUserById');
 const path = require('path');
 const multer = require('multer');
 
@@ -29,6 +30,10 @@ var upload = multer({ storage: storage });
 
 router.get('/getUsers', (req, res) => {
   getUsers(req, res);
+});
+
+router.get('/getUserById/:id', (req, res) => {
+  getUserById(req, res);
 });
 
 router.post('/addUser', upload.single('user'), (req, res) => {

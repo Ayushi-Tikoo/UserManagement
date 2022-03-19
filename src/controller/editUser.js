@@ -4,21 +4,13 @@ const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
 
-const validateCredentials = ({
-  first_name,
-  last_name,
-  email,
-  password,
-  phone,
-  code
-}) => {
+const validateCredentials = ({ first_name, last_name, email, phone, code }) => {
   if (
     !validator.isEmpty(first_name) &&
     !validator.isEmpty(last_name) &&
     !validator.isEmpty(email) &&
     !validator.isEmpty(phone) &&
-    !validator.isEmpty(code) &&
-    !validator.isEmpty(password)
+    !validator.isEmpty(code)
   ) {
     if (
       validator.isEmail(email) &&
@@ -35,14 +27,13 @@ const validateCredentials = ({
 
 const editUser = async (req, res) => {
   try {
-    const { first_name, last_name, email, password, phone, code } = req.body;
+    const { first_name, last_name, email, phone, code } = req.body;
     const valid = validateCredentials(req.body);
     if (!valid) {
       return res.status(400).json({ msg: 'Invalid Inputs' });
     }
-    const hashPassword = await bcrypt.hash(password, 8);
     console.log('req.params.id', req.params.id);
-    let query = `UPDATE users SET first_name ='${first_name}', last_name = '${last_name}', email ='${email}', password ='${hashPassword}', phone='${phone}', code='${code}', updated_at = current_timestamp WHERE id='${req.params.id}' RETURNING email`;
+    let query = `UPDATE users SET first_name ='${first_name}', last_name = '${last_name}', email ='${email}', phone='${phone}', code='${code}', updated_at = current_timestamp WHERE id='${req.params.id}' RETURNING email`;
     const result = await runQuery(query);
 
     if (result.rows[0].email && req.file) {
