@@ -79,12 +79,20 @@ const addUser = async (req, res) => {
     const hashPassword = await bcrypt.hash(password, 8);
     const query = `INSERT INTO users(first_name, last_name, email, password, phone, code, created_at) VALUES('${first_name}','${last_name}','${email}','${hashPassword}', '${phone}', '${code}', current_timestamp) RETURNING id`;
     const result = await runQuery(query);
-    if (result.rows[0].id && req.file) {
-      const image = req.file.filename;
-      const query = `INSERT INTO user_images(user_id, image) VALUES('${result.rows[0].id}','${image}')`;
-      const results = await runQuery(query);
+
+    if (result.rows.length) {
+      if (req.file) {
+        const image = req.file.filename;
+        const query = `INSERT INTO user_images(user_id, image) VALUES('${result.rows[0].id}','${image}')`;
+        const results = await runQuery(query);
+
+        if (!results.rows.length)
+          return res.status(500).json({ msg: 'Unable to insert image' });
+      }
+      return res.status(200).json({ msg: 'User is successfully added' });
+    } else {
+      throw new Error('Not able to add user');
     }
-    return res.status(200).json({ msg: 'User is successfully added' });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

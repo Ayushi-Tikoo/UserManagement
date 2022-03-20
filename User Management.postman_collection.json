@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "e85b27cb-5497-4e7b-b057-b72a460960e6",
+		"name": "User Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "first_name",
+							"value": "Viyom",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Tikoo",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "viyom@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "ayushi123",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "8851892988",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "872767",
+							"type": "text"
+						},
+						{
+							"key": "user",
+							"type": "file",
+							"src": "/E:/Interview/UserManagementImages/avatar7.png"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/addUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"addUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "first_name",
+							"value": "Viyom",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Tikoo",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "viyom@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "ayushi123",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "885189297",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "123466",
+							"type": "text"
+						},
+						{
+							"key": "user",
+							"type": "file",
+							"src": "/E:/Interview/UserManagementImages/avatar4.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/editUser/21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"editUser",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/user/deleteUser/21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"deleteUser",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/user/getUsers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"getUsers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
